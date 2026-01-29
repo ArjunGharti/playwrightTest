@@ -1,5 +1,6 @@
 import { expect, Locator, Page } from "@playwright/test";
-import { ProductCard } from "../components/productCard.component";
+import { ProductCard } from "../components/ProductCard.component";
+
 
 
 export class HomePage{
