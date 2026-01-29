@@ -55,7 +55,6 @@ export class HomePage{
         }
         await product.addToCart()
 
-
     }
 
     async getProductNames(): Promise<string[]> {
@@ -64,8 +63,20 @@ export class HomePage{
     }
 
 
-    
+    async getProductPrice(): Promise<string[]> {
 
+        const cards = await this.getAllProductCards()
+        return Promise.all(cards.map(card => card.getPrice()))
+    }
+
+    async getProductCount(): Promise<number> {
+        return await this.productCardsLocator.count()
+    }
+
+    async waitForProductsToLoad(): Promise<void> {
+        await this.page.waitForLoadState('networkidle')
+        await this.productCardsLocator.first().waitFor({state: 'visible'})
+    }
 
     
 
